@@ -8,19 +8,24 @@ import projectsImg from "@/assets/projects.jpg";
 import { SeoJsonLd, SeoSchema, breadcrumbJsonLd, seoHead } from "@/lib/seo";
 
 const pageSeo = {
-  title: "Project & Industry Support | Ullasco Equipment Services Kuwait",
+  title: "Industries Served | Ullasco Equipment Services Kuwait",
   description:
     "Ullasco supports construction sites, industrial facilities, logistics operations, infrastructure works, equipment movement, and fleet operations in Kuwait.",
-  path: "/projects",
-  canonicalPath: "/industries",
+  path: "/industries",
   image: projectsImg,
   imageAlt: "Construction site equipment and cranes supporting industrial projects in Kuwait",
-  robots: "noindex, follow",
+  keywords: [
+    "construction equipment Kuwait",
+    "industrial equipment support Kuwait",
+    "logistics fleet support Kuwait",
+    "infrastructure equipment Kuwait",
+    "equipment movement Kuwait",
+  ],
 };
 
-export const Route = createFileRoute("/projects")({
+export const Route = createFileRoute("/industries")({
   head: () => seoHead(pageSeo),
-  component: ProjectsPage,
+  component: IndustriesPage,
 });
 
 const industries = [
@@ -56,14 +61,14 @@ const industries = [
   },
 ];
 
-function ProjectsPage() {
+function IndustriesPage() {
   return (
     <PageLayout>
       <SeoSchema page={pageSeo}>
         <SeoJsonLd
           data={breadcrumbJsonLd([
             { name: "Home", path: "/" },
-            { name: "Project & Industry Support", path: "/projects" },
+            { name: "Industries Served", path: "/industries" },
           ])}
         />
       </SeoSchema>

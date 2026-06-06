@@ -20,6 +20,8 @@ const icons = {
 } as const;
 
 export function SocialLinks({ className = "" }: { className?: string }) {
+  if (socialLinks.length === 0) return null;
+
   return (
     <div className={`flex items-center gap-2 ${className}`}>
       {socialLinks.map((item) => (

@@ -13,6 +13,7 @@ import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
 import { Route as ServicesRouteImport } from './routes/services'
 import { Route as ProjectsRouteImport } from './routes/projects'
 import { Route as MaintenanceRouteImport } from './routes/maintenance'
+import { Route as IndustriesRouteImport } from './routes/industries'
 import { Route as EquipmentRouteImport } from './routes/equipment'
 import { Route as ContactRouteImport } from './routes/contact'
 import { Route as AboutRouteImport } from './routes/about'
@@ -36,6 +37,11 @@ const ProjectsRoute = ProjectsRouteImport.update({
 const MaintenanceRoute = MaintenanceRouteImport.update({
   id: '/maintenance',
   path: '/maintenance',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const IndustriesRoute = IndustriesRouteImport.update({
+  id: '/industries',
+  path: '/industries',
   getParentRoute: () => rootRouteImport,
 } as any)
 const EquipmentRoute = EquipmentRouteImport.update({
@@ -64,6 +70,7 @@ export interface FileRoutesByFullPath {
   '/about': typeof AboutRoute
   '/contact': typeof ContactRoute
   '/equipment': typeof EquipmentRoute
+  '/industries': typeof IndustriesRoute
   '/maintenance': typeof MaintenanceRoute
   '/projects': typeof ProjectsRoute
   '/services': typeof ServicesRoute
@@ -74,6 +81,7 @@ export interface FileRoutesByTo {
   '/about': typeof AboutRoute
   '/contact': typeof ContactRoute
   '/equipment': typeof EquipmentRoute
+  '/industries': typeof IndustriesRoute
   '/maintenance': typeof MaintenanceRoute
   '/projects': typeof ProjectsRoute
   '/services': typeof ServicesRoute
@@ -85,6 +93,7 @@ export interface FileRoutesById {
   '/about': typeof AboutRoute
   '/contact': typeof ContactRoute
   '/equipment': typeof EquipmentRoute
+  '/industries': typeof IndustriesRoute
   '/maintenance': typeof MaintenanceRoute
   '/projects': typeof ProjectsRoute
   '/services': typeof ServicesRoute
@@ -97,6 +106,7 @@ export interface FileRouteTypes {
     | '/about'
     | '/contact'
     | '/equipment'
+    | '/industries'
     | '/maintenance'
     | '/projects'
     | '/services'
@@ -107,6 +117,7 @@ export interface FileRouteTypes {
     | '/about'
     | '/contact'
     | '/equipment'
+    | '/industries'
     | '/maintenance'
     | '/projects'
     | '/services'
@@ -117,6 +128,7 @@ export interface FileRouteTypes {
     | '/about'
     | '/contact'
     | '/equipment'
+    | '/industries'
     | '/maintenance'
     | '/projects'
     | '/services'
@@ -128,6 +140,7 @@ export interface RootRouteChildren {
   AboutRoute: typeof AboutRoute
   ContactRoute: typeof ContactRoute
   EquipmentRoute: typeof EquipmentRoute
+  IndustriesRoute: typeof IndustriesRoute
   MaintenanceRoute: typeof MaintenanceRoute
   ProjectsRoute: typeof ProjectsRoute
   ServicesRoute: typeof ServicesRoute
@@ -162,6 +175,13 @@ declare module '@tanstack/react-router' {
       path: '/maintenance'
       fullPath: '/maintenance'
       preLoaderRoute: typeof MaintenanceRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/industries': {
+      id: '/industries'
+      path: '/industries'
+      fullPath: '/industries'
+      preLoaderRoute: typeof IndustriesRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/equipment': {
@@ -200,6 +220,7 @@ const rootRouteChildren: RootRouteChildren = {
   AboutRoute: AboutRoute,
   ContactRoute: ContactRoute,
   EquipmentRoute: EquipmentRoute,
+  IndustriesRoute: IndustriesRoute,
   MaintenanceRoute: MaintenanceRoute,
   ProjectsRoute: ProjectsRoute,
   ServicesRoute: ServicesRoute,

@@ -1,23 +1,34 @@
 import { Link } from "@tanstack/react-router";
-import { MapPin, Phone, Mail, Globe } from "lucide-react";
+import { Globe, Mail, MapPin, Phone } from "lucide-react";
 import { SocialLinks } from "@/components/SocialLinks";
 import {
   companyAddress,
+  companyEmail,
   companyMapUrl,
   companyPhoneDisplay,
   companyPhoneHref,
 } from "@/lib/company";
 import logoUrl from "@/assets/ullasco-logo.png";
+import { OptimizedImage } from "@/components/OptimizedImage";
 
 export function SiteFooter() {
   return (
-    <footer className="bg-navy text-navy-foreground">
-      <div className="container-x py-14 grid gap-10 md:grid-cols-2 lg:grid-cols-4">
+    <footer className="relative overflow-hidden bg-navy text-navy-foreground">
+      <div className="absolute inset-0 pattern-site-grid opacity-25" aria-hidden />
+      <div className="container-x relative grid gap-10 py-14 md:grid-cols-2 lg:grid-cols-4">
         <div>
-          <div className="bg-white inline-flex rounded-md p-2 mb-4">
-            <img src={logoUrl} alt="Ullasco" className="h-10 w-auto" width={180} height={80} />
+          <div className="mb-4 inline-flex rounded-md bg-white p-2">
+            <OptimizedImage
+              src={logoUrl}
+              alt="Ullasco Equipments & Machinery logo"
+              className="h-10 w-auto"
+              width={620}
+              height={200}
+              sizes="140px"
+              loading="lazy"
+            />
           </div>
-          <p className="text-sm text-white/75 leading-relaxed max-w-xs">
+          <p className="max-w-xs text-sm leading-relaxed text-white/75">
             Ullasco Equipments & Machinery provides reliable equipment rental, fleet, transport, and
             maintenance solutions in Kuwait.
           </p>
@@ -25,9 +36,7 @@ export function SiteFooter() {
         </div>
 
         <div>
-          <h3 className="text-white text-sm font-semibold uppercase tracking-widest mb-4">
-            Quick Links
-          </h3>
+          <h3 className="mb-4 text-sm font-semibold uppercase text-white">Quick Links</h3>
           <ul className="space-y-2 text-sm text-white/75">
             {[
               ["/", "Home"],
@@ -35,11 +44,11 @@ export function SiteFooter() {
               ["/services", "Services"],
               ["/equipment", "Equipment & Fleet"],
               ["/maintenance", "Maintenance"],
-              ["/projects", "Industries Served"],
+              ["/industries", "Industries Served"],
               ["/contact", "Contact"],
             ].map(([href, label]) => (
               <li key={href}>
-                <Link to={href} className="hover:text-primary transition-colors">
+                <Link to={href} className="transition-colors hover:text-primary">
                   {label}
                 </Link>
               </li>
@@ -48,26 +57,30 @@ export function SiteFooter() {
         </div>
 
         <div>
-          <h3 className="text-white text-sm font-semibold uppercase tracking-widest mb-4">
-            Services
-          </h3>
+          <h3 className="mb-4 text-sm font-semibold uppercase text-white">Services</h3>
           <ul className="space-y-2 text-sm text-white/75">
-            <li>Light Equipment Rental</li>
-            <li>Heavy Equipment Rental</li>
-            <li>Fleet Solutions</li>
-            <li>Transport Services</li>
-            <li>Machinery Maintenance</li>
-            <li>Project & Site Support</li>
+            {[
+              ["/equipment", "Light Equipment Rental"],
+              ["/equipment", "Heavy Equipment Rental"],
+              ["/services#fleet-solutions", "Fleet Solutions"],
+              ["/services#transport-services", "Transport Services"],
+              ["/maintenance", "Machinery Maintenance"],
+              ["/services#project-support", "Project & Site Support"],
+            ].map(([href, label]) => (
+              <li key={`${href}-${label}`}>
+                <a href={href} className="transition-colors hover:text-primary">
+                  {label}
+                </a>
+              </li>
+            ))}
           </ul>
         </div>
 
         <div>
-          <h3 className="text-white text-sm font-semibold uppercase tracking-widest mb-4">
-            Contact
-          </h3>
+          <h3 className="mb-4 text-sm font-semibold uppercase text-white">Contact</h3>
           <ul className="space-y-3 text-sm text-white/85">
             <li className="flex gap-3">
-              <MapPin className="size-4 text-primary mt-0.5 shrink-0" />
+              <MapPin className="mt-0.5 size-4 shrink-0 text-primary" />
               <a
                 href={companyMapUrl}
                 target="_blank"
@@ -78,29 +91,31 @@ export function SiteFooter() {
               </a>
             </li>
             <li className="flex gap-3">
-              <Phone className="size-4 text-primary mt-0.5 shrink-0" />{" "}
+              <Phone className="mt-0.5 size-4 shrink-0 text-primary" />
               <a href={companyPhoneHref} className="hover:text-primary">
                 {companyPhoneDisplay}
               </a>
             </li>
             <li className="flex gap-3">
-              <Mail className="size-4 text-primary mt-0.5 shrink-0" />{" "}
-              <a href="mailto:info@ullasco.com" className="hover:text-primary">
-                info@ullasco.com
+              <Mail className="mt-0.5 size-4 shrink-0 text-primary" />
+              <a href={`mailto:${companyEmail}`} className="hover:text-primary">
+                {companyEmail}
               </a>
             </li>
             <li className="flex gap-3">
-              <Globe className="size-4 text-primary mt-0.5 shrink-0" /> www.ullasco.com
+              <Globe className="mt-0.5 size-4 shrink-0 text-primary" />
+              www.ullasco.com
             </li>
           </ul>
         </div>
       </div>
       <div className="border-t border-white/10">
-        <div className="container-x py-5 flex flex-col md:flex-row items-center justify-between gap-2 text-xs text-white/60">
+        <div className="container-x relative flex flex-col items-center justify-between gap-2 py-5 text-xs text-white/60 md:flex-row">
           <p>
-            © {new Date().getFullYear()} Ullasco for Light & Heavy Equipment & Machinery Co. W.L.L.
+            Copyright {new Date().getFullYear()} Ullasco for Light & Heavy Equipment & Machinery Co.
+            W.L.L.
           </p>
-          <p>Kuwait • GCC</p>
+          <p>Kuwait / GCC</p>
         </div>
       </div>
     </footer>

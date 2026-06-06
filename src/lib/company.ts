@@ -1,6 +1,15 @@
 export const companyAddress =
   "Complex 6659, 2nd Floor, Office 11, Block 11, Mekkah Street, Fahaheel, Ahmadi Gov. 63011, KW";
 
+export const companyStreetAddress = "Complex 6659, 2nd Floor, Office 11, Block 11, Mekkah Street";
+export const companyLocality = "Fahaheel";
+export const companyRegion = "Ahmadi Governorate";
+export const companyPostalCode = "63011";
+export const companyCountryCode = "KW";
+export const companyEmail = "info@ullasco.com";
+export const companyLatitude = 29.08424;
+export const companyLongitude = 48.13324;
+
 export const companyMapUrl =
   "https://www.bing.com/maps/search?q=Complex+6659%2C+2nd+Floor%2C+Office+11%2C+Block+11%2C+Mekkah+Street%2C+Fahaheel%2C+Ahmadi+Gov.+63011%2C+KW&cp=29.08424%7E48.13324&lvl=16&style=r";
 
@@ -9,17 +18,12 @@ export const companyMapEmbedUrl =
 
 export const companyPhone = "41003264";
 export const companyPhoneDisplay = "4100 3264";
-export const companyPhoneHref = `tel:${companyPhone}`;
+export const companyPhoneInternational = "+96541003264";
+export const companyPhoneHref = `tel:${companyPhoneInternational}`;
 export const companyWhatsAppHref = `https://wa.me/965${companyPhone}`;
 
-export const socialLinks = [
-  { label: "Facebook", href: "#", brandClass: "bg-[#1877F2]" },
-  {
-    label: "Instagram",
-    href: "#",
-    brandClass:
-      "bg-[radial-gradient(circle_at_30%_110%,#fdf497_0%,#fdf497_18%,#fd5949_45%,#d6249f_68%,#285AEB_100%)]",
-  },
-  { label: "LinkedIn", href: "#", brandClass: "bg-[#0A66C2]" },
-  { label: "X", href: "#", brandClass: "bg-black" },
-] as const;
+export const socialLinks: Array<{
+  label: "Facebook" | "Instagram" | "LinkedIn" | "X";
+  href: string;
+  brandClass: string;
+}> = [];

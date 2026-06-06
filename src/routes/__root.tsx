@@ -11,7 +11,15 @@ import { useEffect, type ReactNode } from "react";
 
 import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
-import logoUrl from "@/assets/ullasco-logo.png";
+import {
+  absoluteUrl,
+  defaultDescription,
+  siteImage,
+  siteLanguage,
+  siteLocale,
+  siteName,
+  siteUrl,
+} from "@/lib/seo";
 
 function NotFoundComponent() {
   return (
@@ -68,19 +76,26 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Ullasco Equipments & Machinery | Kuwait" },
-      {
-        name: "description",
-        content:
-          "Light & heavy equipment rental, fleet, transport, and maintenance services in Kuwait.",
-      },
-      { property: "og:site_name", content: "Ullasco Equipments & Machinery" },
+      { title: `${siteName} | Kuwait Equipment Rental & Maintenance` },
+      { name: "description", content: defaultDescription },
+      { name: "robots", content: "index, follow, max-image-preview:large" },
+      { name: "theme-color", content: "#1C2F80" },
+      { name: "format-detection", content: "telephone=yes" },
+      { property: "og:site_name", content: siteName },
       { property: "og:type", content: "website" },
+      { property: "og:url", content: siteUrl },
+      { property: "og:locale", content: siteLocale },
+      { property: "og:image", content: absoluteUrl(siteImage) },
+      { property: "og:image:width", content: "1200" },
+      { property: "og:image:height", content: "630" },
       { name: "twitter:card", content: "summary_large_image" },
+      { name: "twitter:image", content: absoluteUrl(siteImage) },
     ],
     links: [
       { rel: "stylesheet", href: appCss },
-      { rel: "icon", href: logoUrl },
+      { rel: "icon", href: "/favicon.ico", sizes: "any" },
+      { rel: "apple-touch-icon", href: "/apple-touch-icon.png" },
+      { rel: "manifest", href: "/site.webmanifest" },
       { rel: "preconnect", href: "https://fonts.googleapis.com" },
       { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
       {
@@ -97,7 +112,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
 
 function RootShell({ children }: { children: ReactNode }) {
   return (
-    <html lang="en">
+    <html lang={siteLanguage}>
       <head>
         <HeadContent />
       </head>
