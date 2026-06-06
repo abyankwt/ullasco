@@ -1,7 +1,9 @@
 import { Link, useRouterState } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
-import { Menu, X, Phone } from "lucide-react";
-import logo from "@/assets/ullasco-logo.png.asset.json";
+import { MapPin, Menu, X, Phone } from "lucide-react";
+import { SocialLinks } from "@/components/SocialLinks";
+import { companyAddress, companyMapUrl, companyPhoneHref } from "@/lib/company";
+import logoUrl from "@/assets/ullasco-logo.png";
 
 const nav = [
   { to: "/", label: "Home" },
@@ -25,7 +27,9 @@ export function SiteHeader() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  useEffect(() => { setOpen(false); }, [pathname]);
+  useEffect(() => {
+    setOpen(false);
+  }, [pathname]);
 
   return (
     <header
@@ -33,9 +37,29 @@ export function SiteHeader() {
         scrolled ? "bg-white/95 backdrop-blur shadow-[0_1px_0_0_var(--color-border)]" : "bg-white"
       }`}
     >
+      <div className="hidden border-b border-border/70 bg-navy text-white md:block">
+        <div className="container-x flex min-h-10 items-center justify-between gap-4 py-2 text-xs">
+          <a
+            href={companyMapUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex min-w-0 items-center gap-2 text-white/80 transition hover:text-primary"
+          >
+            <MapPin className="size-4 shrink-0 text-primary" />
+            <span className="truncate">{companyAddress}</span>
+          </a>
+          <SocialLinks className="shrink-0 text-white/85" />
+        </div>
+      </div>
       <div className="container-x flex h-18 items-center justify-between py-3">
         <Link to="/" className="flex items-center gap-2" aria-label="Ullasco home">
-          <img src={logo.url} alt="Ullasco Equipments & Machinery" className="h-10 md:h-12 w-auto" width={240} height={120} />
+          <img
+            src={logoUrl}
+            alt="Ullasco Equipments & Machinery"
+            className="h-10 md:h-12 w-auto"
+            width={240}
+            height={120}
+          />
         </Link>
 
         <nav className="hidden lg:flex items-center gap-1" aria-label="Primary">
@@ -44,7 +68,9 @@ export function SiteHeader() {
               key={item.to}
               to={item.to}
               className="px-3 py-2 text-sm font-medium text-charcoal/80 hover:text-navy rounded-md transition-colors"
-              activeProps={{ className: "px-3 py-2 text-sm font-semibold text-navy rounded-md bg-muted" }}
+              activeProps={{
+                className: "px-3 py-2 text-sm font-semibold text-navy rounded-md bg-muted",
+              }}
               activeOptions={{ exact: item.to === "/" }}
             >
               {item.label}
@@ -53,10 +79,15 @@ export function SiteHeader() {
         </nav>
 
         <div className="hidden lg:flex items-center gap-2">
-          <a href="tel:+96500000000" className="inline-flex items-center gap-2 text-sm font-medium text-navy hover:text-primary">
+          <a
+            href={companyPhoneHref}
+            className="inline-flex items-center gap-2 text-sm font-medium text-navy hover:text-primary"
+          >
             <Phone className="size-4" /> Call
           </a>
-          <Link to="/contact" className="btn-primary text-sm py-2.5 px-4">Request a Quote</Link>
+          <Link to="/contact" className="btn-primary text-sm py-2.5 px-4">
+            Request a Quote
+          </Link>
         </div>
 
         <button
@@ -77,13 +108,17 @@ export function SiteHeader() {
                 key={item.to}
                 to={item.to}
                 className="py-3 text-base font-medium text-charcoal border-b border-border/60"
-                activeProps={{ className: "py-3 text-base font-semibold text-primary border-b border-border/60" }}
+                activeProps={{
+                  className: "py-3 text-base font-semibold text-primary border-b border-border/60",
+                }}
                 activeOptions={{ exact: item.to === "/" }}
               >
                 {item.label}
               </Link>
             ))}
-            <Link to="/contact" className="btn-primary mt-4">Request a Quote</Link>
+            <Link to="/contact" className="btn-primary mt-4">
+              Request a Quote
+            </Link>
           </nav>
         </div>
       )}
