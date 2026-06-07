@@ -1,8 +1,8 @@
 import { Link, useRouterState } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
-import { MapPin, Menu, X, Phone, Clock3 } from "lucide-react";
+import { Building2, Menu, X, Phone, Clock3 } from "lucide-react";
 import { SocialLinks } from "@/components/SocialLinks";
-import { companyAddress, companyMapUrl, companyPhoneHref } from "@/lib/company";
+import { companyLegalName, companyPhoneHref } from "@/lib/company";
 import logoUrl from "@/assets/ullasco-logo.png";
 import { OptimizedImage } from "@/components/OptimizedImage";
 
@@ -42,15 +42,10 @@ export function SiteHeader() {
     >
       <div className="hidden border-b border-border/70 bg-navy text-white md:block">
         <div className="container-x flex min-h-10 items-center justify-between gap-4 py-2 text-xs">
-          <a
-            href={companyMapUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex min-w-0 items-center gap-2 text-white/80 transition hover:text-primary"
-          >
-            <MapPin className="size-4 shrink-0 text-primary" />
-            <span className="truncate">{companyAddress}</span>
-          </a>
+          <div className="inline-flex min-w-0 items-center gap-2 text-white/80 transition hover:text-primary">
+            <Building2 className="size-4 shrink-0 text-primary" />
+            <span className="truncate">{companyLegalName}</span>
+          </div>
           <div className="flex shrink-0 items-center gap-5">
             <span className="inline-flex items-center gap-2 text-white/78">
               <Clock3 className="size-4 text-primary" />

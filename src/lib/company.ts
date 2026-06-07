@@ -1,3 +1,5 @@
+export const companyLegalName = "Ullas Co. For Light & Heavy Equipments & Machinery W.L.L.";
+
 export const companyAddress =
   "Complex 6659, 2nd Floor, Office 11, Block 11, Mekkah Street, Fahaheel, Ahmadi Gov. 63011, KW";
 
@@ -7,14 +9,13 @@ export const companyRegion = "Ahmadi Governorate";
 export const companyPostalCode = "63011";
 export const companyCountryCode = "KW";
 export const companyEmail = "info@ullasco.com";
-export const companyLatitude = 29.08424;
-export const companyLongitude = 48.13324;
+export const companyLatitude = 29.080005;
+export const companyLongitude = 48.134965;
 
-export const companyMapUrl =
-  "https://www.bing.com/maps/search?q=Complex+6659%2C+2nd+Floor%2C+Office+11%2C+Block+11%2C+Mekkah+Street%2C+Fahaheel%2C+Ahmadi+Gov.+63011%2C+KW&cp=29.08424%7E48.13324&lvl=16&style=r";
+export const companyMapUrl = "https://maps.app.goo.gl/dPFae5WnLoCq26ud9";
 
 export const companyMapEmbedUrl =
-  "https://www.bing.com/maps/embed?h=420&w=1200&cp=29.08424~48.13324&lvl=17&typ=d&sty=r&src=SHELL&FORM=MBEDV8";
+  "https://maps.google.com/maps?q=29.080005,48.134965&z=17&output=embed";
 
 export const companyPhone = "41003264";
 export const companyPhoneDisplay = "4100 3264";

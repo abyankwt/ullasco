@@ -41,7 +41,27 @@ function ContactPage() {
 
   function onSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
+
+    const formData = new FormData(e.currentTarget);
+    const value = (name: string) => String(formData.get(name) ?? "").trim();
+    const subject = `Quote Request from ${value("name") || "Website"}`;
+    const body = [
+      "New quote request from Ullasco website:",
+      "",
+      `Name: ${value("name")}`,
+      `Company Name: ${value("company") || "Not provided"}`,
+      `Phone Number: ${value("phone")}`,
+      `Email: ${value("email")}`,
+      `Service Required: ${value("service")}`,
+      "",
+      "Message:",
+      value("message"),
+    ].join("\n");
+
     setSubmitted(true);
+    window.location.href = `mailto:${companyEmail}?subject=${encodeURIComponent(
+      subject,
+    )}&body=${encodeURIComponent(body)}`;
   }
 
   return (
@@ -78,8 +98,8 @@ function ContactPage() {
                 <div>
                   <h3 className="text-lg text-navy">Thank you</h3>
                   <p className="mt-1 text-sm text-muted-foreground">
-                    Your enquiry has been captured. For urgent requirements, call or send the same
-                    details on WhatsApp.
+                    Your email app should open with the quote request addressed to Ullasco. For
+                    urgent requirements, call or send the same details on WhatsApp.
                   </p>
                 </div>
               </div>
@@ -195,7 +215,7 @@ function ContactPage() {
             rel="noopener noreferrer"
             className="mt-3 inline-flex text-sm font-semibold text-primary hover:text-navy"
           >
-            Open location in Bing Maps
+            Open location in Google Maps
           </a>
         </div>
       </section>
